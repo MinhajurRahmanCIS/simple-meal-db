@@ -1,0 +1,9 @@
+.latest {
+    background-color: rgba(210, 105, 30, 0.233);
+    border: 2px solid chocolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}

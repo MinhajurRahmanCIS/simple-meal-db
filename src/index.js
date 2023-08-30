@@ -1,13 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Root from './components/Root/Root';
+import Home from './components/Home/Home';
+import Items from './components/Items/Items';
+import SearchResult from './components/SearchResult/SearchResult';
+import ItemDetails from './components/ItemDetails/ItemDetails';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root></Root>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>,
+        loader: () => fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+      },
+      {
+        path: '/items',
+        element: <Items></Items>,
+        loader: () => fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=a')
+      },
+      {
+        path: '/searchResult/:sresult',
+        element: <SearchResult></SearchResult>,
+        loader: ({ params }) => fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${params.sresult}`)
+      },
+      {
+        path: '/itemDetails/:itemId',
+        element: <ItemDetails></ItemDetails>,
+        loader: ({ params }) => fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${params.itemId}`)
+      },
+    ]
+  }
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}>
+    </RouterProvider>
   </React.StrictMode>
 );
 

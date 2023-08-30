@@ -1,0 +1,17 @@
+.itemDetails-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.itemDetails-container img{
+    width: 500px;
+    height: 400px;
+    border-radius: 20px;
+    margin-right: 20px;
+}
+.itemDetails-container p{
+    word-wrap: break-word;
+    line-height: 2.0;
+    word-spacing: 0.5px;
+}
